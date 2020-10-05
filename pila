@@ -1,0 +1,84 @@
+package pila;
+
+import java.util.Scanner;
+public class Pila {
+      
+ int a=26;
+  char pilabc [] = new char [a];
+  char tope = 0;
+  public  char letra = 'A';
+   public void llenar () { // es el metodo llenar y utilizamos una variable
+       // para determinar el tamaño del array
+       for (int i=0; i<a; i++) {
+        pilabc[i] = (char) (Math.random()*a+'A'); // con esto se hacen valores 
+        //al azar 
+        for (int j=0;j<i;j++){
+            if(pilabc[i]==pilabc[j]){
+                i--;
+            }
+        }
+        }
+        System.out.println("datos aleatorios maximos");
+  }
+   public void mostrar () { // con este metodo se muestra el array
+      for (int i=a-1; i>=0; i--) {
+        System.out.print(pilabc[i]);
+        }
+      
+    }
+   
+   public void eliminar () { // cuando el usuario quiere eliminar un dato
+       // se selecciona la opcion y se elimina
+   tope--;
+ System.out.println ("dato eliminado");
+   }
+   public void agregar (char w) {
+   pilabc [tope] = w;
+   tope++;
+   System.out.println ("dato agregado");
+   }
+   
+   public void ordenar (){ // con este metodo se ordenan los datos
+       char aux= 0;
+    for (char i=0; i >= a; i++ ){ 
+        pilabc [i] = (char) ( a + 'A');
+     for (char  j=0; j > i;j++){
+      if ( pilabc [j] > pilabc[j+1] ) { 
+          aux = pilabc[j];
+          pilabc[j] = pilabc[j+1];
+          pilabc[j+1]= aux;
+       
+      } 
+     }  
+    
+    }     
+    }
+
+    public static void main(String[] args) {
+        Pila c = new Pila ();
+         Scanner sc = new Scanner (System.in);
+          int opt = 0;
+          
+          do {
+          System.out.println ( "1 llenar\n" + "2 mostrar"); 
+          System.out.println ( "3 eliminar\n" + "4 agregar\n" + "5 ordenar" );
+          System.out.println ( "6 salir" );
+           
+           switch (opt = sc.nextInt() ){
+               case 1: c.llenar();
+                break;
+               case 2: c.mostrar ();
+                break;
+               case 3: c.eliminar ();
+                break;
+               case 4: System.out.print (" ingrese el dato");
+               char w = sc.next ().charAt (0);
+               c.agregar (w);
+                 break;
+               case 5: c.ordenar (); 
+               break;
+           }
+        } while (opt !=6);
+    } 
+} // con el metodo main se mandan a llamar a sus esclavos, es decir, 
+//los otros metodos
